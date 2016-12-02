@@ -2,6 +2,16 @@
 
 import Foundation
 
-var str = "Hello, playground"
+/*:
+ # --- Part Two ---
+ 
+ Then, you notice the instructions continue on the back of the Recruiting Document. Easter Bunny HQ is actually at the first location you visit twice.
+ 
+ For example, if your instructions are `R8, R4, R4, R8`, the first location you visit twice is 4 blocks away, due East.
+ 
+ How many blocks away is the __first location you visit twice__?
+ 
+*/
+
 
 //: [Previous](@previous)
