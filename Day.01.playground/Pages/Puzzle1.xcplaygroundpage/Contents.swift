@@ -14,7 +14,7 @@ import Foundation
  
  The Document indicates that you should start at the given coordinates (where you just landed) and face North. Then, follow the provided sequence: either turn left (L) or right (R) 90 degrees, then walk forward the given number of blocks, ending at a new intersection.
  
- There's no time to follow such ridiculous instructions on foot, though, so you take a moment and work out the destination. Given that you can only walk on the [street grid of the city](https://en.wikipedia.org/wiki/Taxicab_geometry), how far is the shortest path to the destination?
+ There's no time to follow such ridiculous instructions on foot, though, so you take a moment and work out the destination. Given that you can only walk on the [street grid of the city](https://en.wikipedia.org/wiki/Taxicab_geometry) , how far is the shortest path to the destination?
  
  For example:
  
@@ -26,13 +26,20 @@ import Foundation
  */
 
 //: ---
+
+//: ## implementation
+
+public extension Position {
+    public func walk(_ moves: [Move]) -> Position {
+        return moves.reduce(self) { position, move in
+            return position.walked(move)
+        }
+    }
+}
+
 //: ## Execution
 
 let start = Position(coordniate: Coordinate(x: 0, y: 0), orientation: .north)
-
-func distanceFromZero(coordinate: Coordinate) -> Int {
-    return abs(coordinate.x) + abs(coordinate.y)
-}
 
 let sample1 = start.walk("R2, L3".moves())
 distanceFromZero(coordinate: sample1.coordniate) == 5

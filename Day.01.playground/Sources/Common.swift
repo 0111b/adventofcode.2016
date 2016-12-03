@@ -103,7 +103,7 @@ extension Position: CustomStringConvertible {
 
 extension Coordinate: CustomStringConvertible {
     public var description: String {
-        return "(\(x),\(y))"
+        return "<\(x),\(y)>"
     }
 }
 
@@ -117,14 +117,6 @@ extension Move: CustomStringConvertible {
             arrow = "⟹"
         }
         return "(\(arrow)\(length))"
-    }
-}
-
-public extension Position {
-    public func walk(_ moves: [Move]) -> Position {
-        return moves.reduce(self) { position, move in
-            return position.walked(move)
-        }
     }
 }
 
@@ -160,3 +152,7 @@ public extension Move {
     }
 }
 
+
+public func distanceFromZero(coordinate: Coordinate) -> Int {
+    return abs(coordinate.x) + abs(coordinate.y)
+}
