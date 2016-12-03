@@ -39,7 +39,40 @@ import Cocoa
 
 //: ## implementation
 
-let input = getInput()
+/*: 
+ ### Assumptions
+ 
+ field is a square
+ */
+
+//: ## Execution
+
+func run(desk: Desk, moves: MoveSequence) -> String {
+    return moves.reduce("") { result, moveList in
+        moveList.forEach { desk.move($0) }
+        return result + desk.selectedButton.value
+    }
+}
+
+let buttons = [
+    [ Button("1"), Button("2"), Button("3")],
+    [ Button("4"), Button("5"), Button("6")],
+    [ Button("7"), Button("8"), Button("9")],
+]
+
+let sample1: MoveSequence = [
+    [.up, .left, .left],
+    [.right, .right, .down, .down, .down],
+    [.left, .up, .right, .down, .left],
+    [.up, .up, .up, .up, .down],
+]
+
+let sampleDesk1 = Desk(buttons: buttons, startX: 1, startY: 1)
+run(desk: sampleDesk1!, moves: sample1) == "1985"
+
+let input = getInputMoves()
+let desk = Desk(buttons: buttons, startX: 1, startY: 1)
+run(desk: desk!, moves: input)
 
 //: ---
 //: [Next](@next)
